@@ -3,8 +3,8 @@ package frc.core.components;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.constants.LimelightConstants;
 
-import frc.robot.Constants.LimelightConstants;
 
 public class Limelight {
   private static final NetworkTable table = NetworkTableInstance.getDefault().getTable(LimelightConstants.tableName);

@@ -13,7 +13,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core.components.Limelight;
 import frc.core.components.SmartNavX;
-import frc.robot.Constants.DrivetrainConstants;
+import frc.robot.constants.DrivetrainConstants;
 
 public class Drivetrain extends SubsystemBase {
 
@@ -24,31 +24,31 @@ public class Drivetrain extends SubsystemBase {
   private final DifferentialDriveOdometry odometry;
 
   public Drivetrain() {
-    var motorLeftBack = new VictorSP(DrivetrainConstants.motorLeftBack);
-    var motorLeftFront = new VictorSP(DrivetrainConstants.motorLeftFront);
+    var motorLeftBack = new VictorSP(DrivetrainConstants.Motors.motorLeftBack);
+    var motorLeftFront = new VictorSP(DrivetrainConstants.Motors.motorLeftFront);
     this.motorsLeft = new MotorControllerGroup(motorLeftBack, motorLeftFront);
 
-    var motorRightBack = new VictorSP(DrivetrainConstants.motorRightBack);
-    var motorRightFront = new VictorSP(DrivetrainConstants.motorRightFront);
+    var motorRightBack = new VictorSP(DrivetrainConstants.Motors.motorRightBack);
+    var motorRightFront = new VictorSP(DrivetrainConstants.Motors.motorRightFront);
     this.motorsRight = new MotorControllerGroup(motorRightBack, motorRightFront);
 
     this.setMotorsInverted(
-      DrivetrainConstants.isMotorsLeftInverted,
-      DrivetrainConstants.isMotorsRightInverted
+      DrivetrainConstants.Motors.isMotorsLeftInverted,
+      DrivetrainConstants.Motors.isMotorsRightInverted
     );
 
     this.drive = new DifferentialDrive(this.motorsRight, this.motorsLeft);
 
     this.encoderLeft = new Encoder(
-      DrivetrainConstants.encoderLeftPortOne,
-      DrivetrainConstants.encoderLeftPortTwo,
-      DrivetrainConstants.isEncoderLeftInverted
+      DrivetrainConstants.Encoders.encoderLeftPortOne,
+      DrivetrainConstants.Encoders.encoderLeftPortTwo,
+      DrivetrainConstants.Encoders.isEncoderLeftInverted
     );
 
     this.encoderRight = new Encoder(
-      DrivetrainConstants.encoderRightPortOne,
-      DrivetrainConstants.encoderRightPortTwo,
-      DrivetrainConstants.isEncoderRightInverted
+      DrivetrainConstants.Encoders.encoderRightPortOne,
+      DrivetrainConstants.Encoders.encoderRightPortTwo,
+      DrivetrainConstants.Encoders.isEncoderRightInverted
     );
 
     this.navX = new SmartNavX();
@@ -159,9 +159,9 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void setEncodersDistancePerPulse() {
-    var wheelCircumferenceMeters = Units.inchesToMeters(DrivetrainConstants.wheelRadius) * 2 * Math.PI;
+    var wheelCircumferenceMeters = Units.inchesToMeters(DrivetrainConstants.Chassi.wheelRadius) * 2 * Math.PI;
 
-    var distancePerPulse = wheelCircumferenceMeters / (double) DrivetrainConstants.pulsesPerRotation;
+    var distancePerPulse = wheelCircumferenceMeters / (double) DrivetrainConstants.Encoders.pulsesPerRotation;
 
     this.encoderLeft.setDistancePerPulse(distancePerPulse);
     this.encoderRight.setDistancePerPulse(distancePerPulse);

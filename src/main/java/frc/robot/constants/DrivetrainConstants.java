@@ -1,0 +1,65 @@
+package frc.robot.constants;
+
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+
+public final class DrivetrainConstants {
+  public static final class Motors {
+    public static final int
+      motorLeftBack = 0,
+      motorLeftFront = 1,
+      motorRightBack = 2,
+      motorRightFront = 3;
+
+    public static final boolean 
+      isMotorsLeftInverted = true,
+      isMotorsRightInverted = false;
+  }
+
+  public static final class Encoders {
+    public static final int
+      encoderLeftPortOne = 6,
+      encoderLeftPortTwo = 7,
+      encoderRightPortOne = 8,
+      encoderRightPortTwo = 9;
+
+    public static final boolean
+      isEncoderLeftInverted = true,
+      isEncoderRightInverted = false;
+  
+    public static final int
+      pulsesPerRotation = 500, 
+      cyclesPerRevolution = pulsesPerRotation * 4;  
+  }
+
+  public static final class Chassi {
+    public static final int 
+    wheelRadius = 2;
+  }
+
+  public static final class Gains {
+    public static final double 
+    ksVolts = 1, //kS
+    kvVoltSecondsPerMeter = 2, //kV
+    kaVoltSecondsSquaredPerMeter = 0.9, //kA
+    kTrackwidthMeters = 0.8,
+    differentialDriveVoltageConstraintMaxVoltage = 7;
+
+    public static final DifferentialDriveKinematics
+      kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+  }
+  
+  public static final class PID {
+    public static final double 
+      kPDriveVelocity = 4.0,
+      kIDriveVelocity = 0,
+      kDDriveVelocity = 0;
+  }
+
+  public final class Autonomous {
+    public static final double 
+      kMaxSpeedMetersPerSecond = 2,
+      kMaxAccelerationMetersPerSecondSquared = 2,
+      kRamseteB = 2,
+      kRamseteZeta = 0.7;
+  }
+}
