@@ -23,7 +23,7 @@ public final class DrivetrainConstants {
       encoderRightPortTwo = 9;
 
     public static final boolean
-      isEncoderLeftInverted = false,
+      isEncoderLeftInverted = true,
       isEncoderRightInverted = true;
   
     public static final int
