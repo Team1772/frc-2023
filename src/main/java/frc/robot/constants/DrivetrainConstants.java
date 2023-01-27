@@ -23,8 +23,8 @@ public final class DrivetrainConstants {
       encoderRightPortTwo = 9;
 
     public static final boolean
-      isEncoderLeftInverted = true,
-      isEncoderRightInverted = false;
+      isEncoderLeftInverted = false,
+      isEncoderRightInverted = true;
   
     public static final int
       pulsesPerRotation = 500, 
@@ -39,9 +39,9 @@ public final class DrivetrainConstants {
   public static final class Gains {
     public static final double 
     ksVolts = 1, //kS
-    kvVoltSecondsPerMeter = 2, //kV
-    kaVoltSecondsSquaredPerMeter = 0.9, //kA
-    kTrackwidthMeters = 0.8,
+    kvVoltSecondsPerMeter = 2.50, //kV
+    kaVoltSecondsSquaredPerMeter = 0.92, //kA
+    kTrackwidthMeters = 0.80,
     differentialDriveVoltageConstraintMaxVoltage = 7;
 
     public static final DifferentialDriveKinematics
@@ -50,7 +50,7 @@ public final class DrivetrainConstants {
   
   public static final class PID {
     public static final double 
-      kPDriveVelocity = 4.0,
+      kPDriveVelocity = 4.08,
       kIDriveVelocity = 0,
       kDDriveVelocity = 0;
   }

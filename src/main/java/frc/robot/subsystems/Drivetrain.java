@@ -74,7 +74,9 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
-    this.motorsLeft.setVoltage(leftVolts);
+    System.out.println("left volts " + -leftVolts);
+    System.out.println("right volts " + rightVolts);
+    this.motorsLeft.setVoltage(-leftVolts);
     this.motorsRight.setVoltage(rightVolts);
 
     this.drive.feed();
@@ -139,8 +141,8 @@ public class Drivetrain extends SubsystemBase {
     SEE WHAT WE SHOULD PUT IN PARAMS */
     this.odometry.resetPosition(
       this.getRotation2d(), 
-      0, 
-      0, 
+      (double) this.getEncoderLeft().get(), 
+      (double) this.getEncoderRight().get(), 
       pose
     );
   }
@@ -173,6 +175,8 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("[DRIVETRAIN] Encoder Right", this.encoderRight.get());
     SmartDashboard.putNumber("[DRIVETRAIN] Average Distance", this.getAverageDistance());
 
+    SmartDashboard.putNumber("[DRIVETRAIN] Altitude", this.navX.getAltitude());
+    SmartDashboard.putNumber("[DRIVETRAIN] Angle", this.navX.getAngle());
     SmartDashboard.putNumber("[LIMELIGHT] X-axis", Limelight.getX());
     SmartDashboard.putNumber("[LIMELIGHT] Y-axis", Limelight.getY());
     SmartDashboard.putNumber("[LIMELIGHT] Target Area", Limelight.getA());

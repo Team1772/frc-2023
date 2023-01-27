@@ -9,10 +9,15 @@ public class SmartNavX {
 
 	public SmartNavX() {
 		this.ahrs = new AHRS(SPI.Port.kMXP);
+		this.ahrs.resetDisplacement();
 	}
 	
 	public double getAngle() {
 		return this.ahrs.getAngle();
+	}
+
+	public double getAltitude() {
+		return this.ahrs.getDisplacementY() * 1000;
 	}
 
 	public void reset() {
