@@ -11,8 +11,8 @@ public class Test extends SequentialCommandGroup {
   public Test(Drivetrain drivetrain, TrajectoryBuilder trajectoryBuilder) {
   
     super.addCommands(
-      trajectoryBuilder.build(INITIAL_TRAJECTORY, "straight")
-      // trajectoryBuilder.build(MIDDLE_TRAJECTORY, "reverse")
+      trajectoryBuilder.build(INITIAL_TRAJECTORY, "straight"),
+      trajectoryBuilder.build(MIDDLE_TRAJECTORY, "reverse")
 
     );
   

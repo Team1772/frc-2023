@@ -23,7 +23,7 @@ public class RobotContainer {
     this.driver = new XboxController(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
 
-    this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "straight");
+    this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "straight", "reverse");
 
     configureButtonBindings();
   }
