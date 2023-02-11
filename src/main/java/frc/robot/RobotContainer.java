@@ -1,29 +1,35 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Axis;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.core.components.SmartController;
 import frc.core.util.TrajectoryBuilder;
-import frc.robot.commands.autonomous.Test;
+import frc.robot.commands.arm.ArmMove;
 import frc.robot.commands.drivetrain.AimTarget;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.PrecisionDrive;
+import frc.robot.commands.intake.CollectPiece;
 import frc.robot.constants.OIConstants;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Intake;
 
 public class RobotContainer {
   private final Drivetrain drivetrain;
-
+  private final Intake intake;
+  private final Arm arm;
+  
   private TrajectoryBuilder trajectoryBuilder;
 
   private XboxController driver;
-  private SmartController operator;
+  private XboxController operator;
 
   public RobotContainer() {
     this.drivetrain = new Drivetrain();
+    this.intake = new Intake();
+    this.arm = new Arm();
 
     this.driver = new XboxController(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
@@ -35,6 +41,8 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     this.buttonBindingsDrivetain();
+    this.buttonBindingsArm();
+    this.buttonBindingsIntake();
   }
 
   private void buttonBindingsDrivetain() {
@@ -59,6 +67,21 @@ public class RobotContainer {
 
   }
 
+  private void buttonBindingsArm() {
+    this.arm.setDefaultCommand(
+      new ArmMove(
+        this.arm, 
+        () -> this.operator.getLeftY()
+      )
+    );
+  }
+
+  private void buttonBindingsIntake() {
+    var leftBumper = new JoystickButton(this.operator, Button.kLeftBumper.value);
+
+    leftBumper.whileTrue(new CollectPiece(this.intake));
+  }
+  
   public Command getAutonomousCommand() {
     return null;
   }
