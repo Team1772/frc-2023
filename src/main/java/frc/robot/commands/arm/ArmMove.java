@@ -7,11 +7,11 @@ import frc.robot.subsystems.Arm;
 
 public class ArmMove extends CommandBase {
   private Arm arm;
-  private double speed;
+  private DoubleSupplier speed;
   
   public ArmMove(Arm arm, DoubleSupplier speed) {
     this.arm = arm;
-    this.speed = speed.getAsDouble();
+    this.speed = speed;
 
     addRequirements(this.arm);
   }
@@ -21,7 +21,7 @@ public class ArmMove extends CommandBase {
 
   @Override
   public void execute() {
-    this.arm.set(this.speed);
+    this.arm.set(speed.getAsDouble());
   }
 
   @Override
