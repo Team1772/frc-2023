@@ -10,6 +10,7 @@ import frc.core.util.TrajectoryBuilder;
 import frc.robot.commands.arm.ArmMove;
 import frc.robot.commands.drivetrain.AimTarget;
 import frc.robot.commands.drivetrain.ArcadeDrive;
+import frc.robot.commands.drivetrain.BalanceChargeStation;
 import frc.robot.commands.drivetrain.PrecisionDrive;
 import frc.robot.commands.intake.CollectPiece;
 import frc.robot.commands.intake.ReleasePiece;
@@ -87,6 +88,8 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    return null;
+    var auto = new BalanceChargeStation(drivetrain);
+    
+    return auto;
   }
 }
