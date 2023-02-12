@@ -1,6 +1,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.core.components.Limelight;
 import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 
@@ -14,7 +15,9 @@ public class CollectPiece extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Limelight.aprilTagPipelineMode();
+  }
 
   @Override
   public void execute() {
@@ -23,6 +26,8 @@ public class CollectPiece extends CommandBase {
 
   @Override
   public void end(boolean isInterrupted) {
+    Limelight.driverPipelineMode();
+
     this.intake.stop();
   }
 }

@@ -18,7 +18,7 @@ public class AimTarget extends CommandBase {
   @Override
   public void initialize() {
     Limelight.setLed(LedMode.ON);
-    Limelight.setPipeline(LimelightConstants.pipeline);
+    Limelight.setPipeline(LimelightConstants.tapePipeline);
   }
 
   @Override

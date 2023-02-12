@@ -92,4 +92,17 @@ public class Limelight {
   public static void setCam(CamMode camMode) {
     setEntry(Entry.CAM_MODE, camMode.value);
   }
+
+  public static void aprilTagPipelineMode() {
+    setPipeline(LimelightConstants.aprilTagPipeline);
+  }
+
+  public static void tapePipelineMode() {
+    setPipeline(LimelightConstants.tapePipeline);
+  }
+
+  public static void driverPipelineMode() {
+    setPipeline(LimelightConstants.driverPipeline);
+  }
+
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.core.components.Limelight;
 import frc.core.components.SmartController;
 import frc.core.util.TrajectoryBuilder;
 import frc.robot.commands.arm.ArmMove;
@@ -11,6 +12,7 @@ import frc.robot.commands.drivetrain.AimTarget;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.PrecisionDrive;
 import frc.robot.commands.intake.CollectPiece;
+import frc.robot.commands.intake.ReleasePiece;
 import frc.robot.constants.OIConstants;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
@@ -78,8 +80,10 @@ public class RobotContainer {
 
   private void buttonBindingsIntake() {
     var leftBumper = new JoystickButton(this.operator, Button.kLeftBumper.value);
+    var rightBumper = new JoystickButton(this.operator, Button.kRightBumper.value);
 
     leftBumper.whileTrue(new CollectPiece(this.intake));
+    rightBumper.whileTrue(new ReleasePiece(this.intake));
   }
   
   public Command getAutonomousCommand() {

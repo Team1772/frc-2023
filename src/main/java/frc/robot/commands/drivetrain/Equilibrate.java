@@ -18,8 +18,6 @@ public class Equilibrate extends CommandBase {
 
   @Override
   public void initialize() {
-    Limelight.setLed(LedMode.ON);
-    Limelight.setPipeline(LimelightConstants.pipeline);
   }
 
   @Override
