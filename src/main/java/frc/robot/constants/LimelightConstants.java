@@ -11,8 +11,8 @@ public final class LimelightConstants {
 
   public static final class AimTarget {
     public static final double
-      kP = 0.1,
-      minCommand = 0.02;
+      kP = 0.06,
+      minCommand = 0.12;
   }
 
   public static final class RangeTarget {
