@@ -14,15 +14,18 @@ import frc.robot.commands.drivetrain.BalanceChargeStation;
 import frc.robot.commands.drivetrain.PrecisionDrive;
 import frc.robot.commands.intake.CollectPiece;
 import frc.robot.commands.intake.ReleasePiece;
+import frc.robot.commands.telescope.TelescopeMove;
 import frc.robot.constants.OIConstants;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Telescope;
 
 public class RobotContainer {
   private final Drivetrain drivetrain;
   private final Intake intake;
   private final Arm arm;
+  private final Telescope telescope;
   
   private TrajectoryBuilder trajectoryBuilder;
 
@@ -33,6 +36,7 @@ public class RobotContainer {
     this.drivetrain = new Drivetrain();
     this.intake = new Intake();
     this.arm = new Arm();
+    this.telescope = new Telescope();
 
     this.driver = new XboxController(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
@@ -46,6 +50,7 @@ public class RobotContainer {
     this.buttonBindingsDrivetain();
     this.buttonBindingsArm();
     this.buttonBindingsIntake();
+    this.buttonBindingsTelescope();
   }
 
   private void buttonBindingsDrivetain() {
@@ -85,6 +90,15 @@ public class RobotContainer {
 
     leftBumper.whileTrue(new CollectPiece(this.intake));
     rightBumper.whileTrue(new ReleasePiece(this.intake));
+  }
+
+  private void buttonBindingsTelescope() {
+    this.telescope.setDefaultCommand(
+      new TelescopeMove(
+        this.telescope,
+        () -> this.operator.getRightY()
+      )
+    );
   }
   
   public Command getAutonomousCommand() {

@@ -53,8 +53,6 @@ public class Drivetrain extends SubsystemBase {
 
     this.navX = new SmartNavX();
 
-    /* CAUTION! MAY NOT WORK YET
-    SEE WHAT WE SHOULD PUT IN PARAMS */
     this.odometry = new DifferentialDriveOdometry(
         this.getRotation2d(), 
         0, 
