@@ -4,11 +4,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.TelescopeConstants;
 
 public class Telescope extends SubsystemBase {
   private final TalonSRX motor;
+  private final DigitalInput limit;
   
   public Telescope() {
     var motor = new TalonSRX(TelescopeConstants.motorPort);
@@ -17,6 +20,9 @@ public class Telescope extends SubsystemBase {
     this.motor.setInverted(TelescopeConstants.isInverted);
 
     this.motor.setNeutralMode(NeutralMode.Brake);
+
+
+    this.limit = new DigitalInput(TelescopeConstants.limitPort);
   }
 
   public void set(double speed) {
@@ -27,7 +33,12 @@ public class Telescope extends SubsystemBase {
     this.motor.set(ControlMode.PercentOutput, 0);
   }
 
-  @Override
-  public void periodic() {}
-}
+  public boolean isLimitOn() {
+    return this.limit.get();
+  }
 
+  @Override
+  public void periodic() {
+    SmartDashboard.putBoolean("[TELESCOPE] Is limit on", this.isLimitOn());
+  }
+}
