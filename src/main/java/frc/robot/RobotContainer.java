@@ -98,7 +98,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    var auto = new BalanceChargeStation(drivetrain);
+    Command auto = null;
     
     return auto;
   }
