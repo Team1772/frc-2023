@@ -10,6 +10,7 @@ import frc.core.components.SmartController;
 import frc.core.util.TrajectoryBuilder;
 import frc.core.util.oi.OperatorRumble;
 import frc.robot.commands.arm.ArmMove;
+import frc.robot.commands.arm.UpArmMove;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.BalanceChargeStation;
 import frc.robot.commands.drivetrain.PrecisionDrive;
@@ -72,6 +73,10 @@ public class RobotContainer {
         () -> this.operator.getLeftY()
       )
     );
+
+    var buttonA = new JoystickButton(this.operator, Button.kA.value);
+
+    buttonA.whileTrue(new UpArmMove(arm));
   }
 
   private void buttonBindingsIntake() {

@@ -6,6 +6,6 @@ public final class ArmConstants {
     rightMotorPort = 3;
 
   public static final boolean
-    isMotorLeftInverted = false,
+    isMotorLeftInverted = true,
     isMotorRightInverted = true;
 }

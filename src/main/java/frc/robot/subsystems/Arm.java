@@ -4,13 +4,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.ArmConstants;
 
 public class Arm extends SubsystemBase {
 
+  private static final double ERROR_THRESHOLD = 0.97;
   private static final NeutralMode BRAKE_MODE = NeutralMode.Brake;
+
   private final TalonSRX motorLeft;
   private final TalonSRX motorRight;
   
@@ -29,7 +30,7 @@ public class Arm extends SubsystemBase {
   }
 
   public void set(double speed) {
-    // this.motorLeft.set(ControlMode.PercentOutput, speed * 0.75);
+    this.motorLeft.set(ControlMode.PercentOutput, speed * ERROR_THRESHOLD);
     this.motorRight.set(ControlMode.PercentOutput, speed);
   }
 
