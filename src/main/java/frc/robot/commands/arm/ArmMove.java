@@ -21,7 +21,7 @@ public class ArmMove extends CommandBase {
 
   @Override
   public void execute() {
-    this.arm.set(speed.getAsDouble());
+    this.arm.set(speed.getAsDouble() * 0.3);
   }
 
   @Override

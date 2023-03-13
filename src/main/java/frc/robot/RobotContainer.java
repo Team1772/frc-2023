@@ -1,14 +1,15 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.core.components.Limelight;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.core.components.SmartController;
 import frc.core.util.TrajectoryBuilder;
+import frc.core.util.oi.OperatorRumble;
 import frc.robot.commands.arm.ArmMove;
-import frc.robot.commands.drivetrain.AimTarget;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.drivetrain.BalanceChargeStation;
 import frc.robot.commands.drivetrain.PrecisionDrive;
@@ -29,7 +30,7 @@ public class RobotContainer {
   
   private TrajectoryBuilder trajectoryBuilder;
 
-  private XboxController driver;
+  private PS4Controller driver;
   private XboxController operator;
 
   public RobotContainer() {
@@ -38,7 +39,7 @@ public class RobotContainer {
     this.arm = new Arm();
     this.telescope = new Telescope();
 
-    this.driver = new XboxController(OIConstants.driverControllerPort);
+    this.driver = new PS4Controller(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
 
     this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "straight", "reverse");
@@ -53,26 +54,15 @@ public class RobotContainer {
     this.buttonBindingsTelescope();
   }
 
+  
   private void buttonBindingsDrivetain() {
-
-    var buttonBumperRight = new JoystickButton(this.driver, Button.kRightBumper.value);
-    buttonBumperRight.toggleOnTrue(new PrecisionDrive(
-      drivetrain, 
-      () -> -this.driver.getLeftY(),
-      () -> this.driver.getRightX()
-    ));
-
     this.drivetrain.setDefaultCommand(
       new ArcadeDrive(
         this.drivetrain, 
         () -> -this.driver.getLeftY(), 
-        () -> this.driver.getRightX()
+        () -> this.driver.getRightY()
       )
     );
-
-    var buttonBumperLeft = new JoystickButton(this.driver, Button.kLeftBumper.value);
-    buttonBumperLeft.whileTrue(new AimTarget(this.drivetrain));
-
   }
 
   private void buttonBindingsArm() {
@@ -96,9 +86,15 @@ public class RobotContainer {
     this.telescope.setDefaultCommand(
       new TelescopeMove(
         this.telescope,
-        () -> this.operator.getRightY()
+        this.operator,
+        () -> -this.operator.getRightY()
       )
     );
+
+    var isLimit = new Trigger(() -> this.telescope.isLimit());
+    isLimit.whileTrue(new OperatorRumble(this.operator, true));
+    isLimit.whileFalse(new OperatorRumble(this.operator, false));
+
   }
   
   public Command getAutonomousCommand() {

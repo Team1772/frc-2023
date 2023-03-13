@@ -7,7 +7,7 @@ import frc.robot.subsystems.Drivetrain;
 
 public class PrecisionDrive extends CommandBase {
 
-  private static final double MAX_OUTPUT = 0.45;
+  private static final double MAX_OUTPUT = 0.60;
   private static final double DEFAULT_OUTPUT = 1;
   private Drivetrain drivetrain;
   private DoubleSupplier forward;

@@ -15,19 +15,13 @@ public class CollectPiece extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-    Limelight.aprilTagPipelineMode();
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
-    this.intake.set(IntakeConstants.speed);
+    this.intake.close();
   }
 
   @Override
-  public void end(boolean isInterrupted) {
-    Limelight.driverPipelineMode();
-
-    this.intake.stop();
-  }
+  public void end(boolean isInterrupted) {}
 }

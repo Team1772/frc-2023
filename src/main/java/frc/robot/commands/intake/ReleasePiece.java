@@ -17,18 +17,14 @@ public class ReleasePiece extends CommandBase {
 
   @Override
   public void initialize() {
-    Limelight.tapePipelineMode();
   }
 
   @Override
   public void execute() {
-    this.intake.set(NumberUtil.invert(IntakeConstants.speed));
+    this.intake.open();
   }
 
   @Override
   public void end(boolean isInterrupted) {
-    Limelight.driverPipelineMode();
-
-    this.intake.stop();
   }
 }
