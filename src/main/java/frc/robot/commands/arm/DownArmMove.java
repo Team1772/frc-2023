@@ -3,13 +3,13 @@ package frc.robot.commands.arm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Arm;
 
-public class UpArmMove extends CommandBase {
+public class DownArmMove extends CommandBase {
 
   private Arm arm;
 
-  private static final double OUTPUT = 0.22;
+  private static final double OUTPUT = -0.22;
   
-  public UpArmMove(Arm arm) {
+  public DownArmMove(Arm arm) {
     this.arm = arm;
 
     addRequirements(this.arm);

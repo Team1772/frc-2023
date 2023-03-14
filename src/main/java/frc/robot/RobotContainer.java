@@ -10,10 +10,9 @@ import frc.core.components.SmartController;
 import frc.core.util.TrajectoryBuilder;
 import frc.core.util.oi.OperatorRumble;
 import frc.robot.commands.arm.ArmMove;
+import frc.robot.commands.arm.DownArmMove;
 import frc.robot.commands.arm.UpArmMove;
 import frc.robot.commands.drivetrain.ArcadeDrive;
-import frc.robot.commands.drivetrain.BalanceChargeStation;
-import frc.robot.commands.drivetrain.PrecisionDrive;
 import frc.robot.commands.intake.CollectPiece;
 import frc.robot.commands.intake.ReleasePiece;
 import frc.robot.commands.telescope.TelescopeMove;
@@ -43,7 +42,7 @@ public class RobotContainer {
     this.driver = new PS4Controller(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
 
-    this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "straight", "reverse");
+    this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "forward");
 
     configureButtonBindings();
   }
@@ -74,9 +73,11 @@ public class RobotContainer {
       )
     );
 
-    var buttonA = new JoystickButton(this.operator, Button.kA.value);
+    var buttonY = new JoystickButton(this.operator, Button.kY.value);
+    buttonY.whileTrue(new UpArmMove(arm));
 
-    buttonA.whileTrue(new UpArmMove(arm));
+    var buttonA = new JoystickButton(this.operator, Button.kA.value);
+    buttonA.whileTrue(new DownArmMove(arm));
   }
 
   private void buttonBindingsIntake() {
