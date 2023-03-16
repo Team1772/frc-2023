@@ -12,6 +12,7 @@ import frc.core.util.oi.OperatorRumble;
 import frc.robot.commands.arm.ArmMove;
 import frc.robot.commands.arm.DownArmMove;
 import frc.robot.commands.arm.UpArmMove;
+import frc.robot.commands.autonomous.MiddleNode;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.intake.CollectPiece;
 import frc.robot.commands.intake.ReleasePiece;
@@ -42,7 +43,7 @@ public class RobotContainer {
     this.driver = new PS4Controller(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
 
-    this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "forward");
+    this.trajectoryBuilder = new TrajectoryBuilder(drivetrain, "reverse");
 
     configureButtonBindings();
   }
@@ -104,7 +105,7 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    Command auto = null;
+    Command auto = new MiddleNode(drivetrain, intake, arm, trajectoryBuilder);
     
     return auto;
   }

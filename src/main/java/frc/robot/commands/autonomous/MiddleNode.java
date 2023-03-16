@@ -14,12 +14,12 @@ public class MiddleNode extends SequentialCommandGroup {
   public MiddleNode(Drivetrain drivetrain, Intake intake, Arm arm, TrajectoryBuilder trajectoryBuilder) {
 
     super.addCommands(
-    new ParallelCommandGroup(
-      trajectoryBuilder.build(true, "forward"),
-      new DownArmMoveTimer(arm, 1.5)
-    ),
+    new DownArmMoveTimer(arm, 2.4),
     new WaitCommand(3),
-    new ReleasePiece(intake)
+    new ReleasePiece(intake),
+    new WaitCommand(2),
+    trajectoryBuilder.build(true, "reverse")
+
     );
   }
 }
