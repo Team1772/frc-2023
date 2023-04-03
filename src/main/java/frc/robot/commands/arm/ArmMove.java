@@ -7,7 +7,7 @@ import frc.robot.subsystems.Arm;
 
 public class ArmMove extends CommandBase {
   private static final double SENSIBILITY_DEADZONE = 0.4;
-  private static final double OUTPUT_LIMIT = 0.16;
+  private static final double OUTPUT_LIMIT = 0.38;
   private Arm arm;
   private DoubleSupplier speed;
   

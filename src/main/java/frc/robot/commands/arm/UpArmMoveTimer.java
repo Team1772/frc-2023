@@ -8,7 +8,7 @@ public class UpArmMoveTimer extends CommandBase {
 
   private Arm arm;
 
-  private static final double OUTPUT = 0.10;
+  private static final double OUTPUT = -0.36;
 
   private Timer timer;
   private double seconds;

@@ -74,6 +74,8 @@ public class Drivetrain extends SubsystemBase {
   public void tankDriveVolts(double leftVolts, double rightVolts) {
     this.motorsLeft.setVoltage(leftVolts);
     this.motorsRight.setVoltage(rightVolts);
+    System.out.println("left: " + leftVolts);
+    System.out.println("right: " + rightVolts);
 
     this.drive.feed();
   }

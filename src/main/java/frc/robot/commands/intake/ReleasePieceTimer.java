@@ -1,25 +1,24 @@
-package frc.robot.commands.arm;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Intake;
 
-public class DownArmMoveTimer extends CommandBase {
-
-  private Arm arm;
-
-  private static final double OUTPUT = 0.36;
+public class ReleasePieceTimer extends CommandBase {
+  private Intake intake;
 
   private Timer timer;
+
+  
   private double seconds;
   
-  public DownArmMoveTimer(Arm arm, double seconds) {
-    this.arm = arm;
-    this.seconds = seconds;
+  public ReleasePieceTimer(Intake intake, double seconds) {
+    this.intake = intake;
 
     this.timer = new Timer();
+    this.seconds = seconds;
 
-    addRequirements(this.arm);
+    addRequirements(this.intake);
   }
 
   @Override
@@ -29,7 +28,7 @@ public class DownArmMoveTimer extends CommandBase {
 
   @Override
   public void execute() {
-    this.arm.set(OUTPUT);
+    this.intake.open();
   }
 
   @Override
@@ -39,7 +38,5 @@ public class DownArmMoveTimer extends CommandBase {
 
   @Override
   public void end(boolean isInterrupted) {
-    this.arm.stop();
-    this.timer.stop();
   }
 }
