@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.util.Units;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -24,12 +27,12 @@ public class Drivetrain extends SubsystemBase {
   private final DifferentialDriveOdometry odometry;
 
   public Drivetrain() {
-    var motorLeftBack = new VictorSP(DrivetrainConstants.Motors.motorLeftBack);
-    var motorLeftFront = new VictorSP(DrivetrainConstants.Motors.motorLeftFront);
+    var motorLeftBack = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftBack);
+    var motorLeftFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftFront);
     this.motorsLeft = new MotorControllerGroup(motorLeftBack, motorLeftFront);
 
     var motorRightBack = new VictorSP(DrivetrainConstants.Motors.motorRightBack);
-    var motorRightFront = new VictorSP(DrivetrainConstants.Motors.motorRightFront);
+    var motorRightFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorRightFront);
     this.motorsRight = new MotorControllerGroup(motorRightBack, motorRightFront);
 
     this.setMotorsInverted(

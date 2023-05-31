@@ -105,8 +105,8 @@ public class RobotContainer {
   }
   
   public Command getAutonomousCommand() {
-    Command auto = new MiddleNode(drivetrain, telescope, intake, arm, trajectoryBuilder);
+    // Command auto = new MiddleNode(drivetrain, telescope, intake, arm, trajectoryBuilder);
     
-    return auto;
+    return null;
   }
 }

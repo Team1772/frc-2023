@@ -5,10 +5,10 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 public final class DrivetrainConstants {
   public static final class Motors {
     public static final int
-      motorLeftBack = 0,
-      motorLeftFront = 1,
-      motorRightBack = 2,
-      motorRightFront = 3;
+      motorLeftBack = 6,
+      motorLeftFront = 7,
+      motorRightBack = 8,
+      motorRightFront = 9;
 
     public static final boolean 
       isMotorsLeftInverted = true,
