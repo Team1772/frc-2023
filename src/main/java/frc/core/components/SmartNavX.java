@@ -31,4 +31,8 @@ public class SmartNavX {
 	public double getRate() {
 		return -(this.ahrs.getRate());
 	}
+
+	public double getPitch() {
+		return this.ahrs.getPitch();
+	}
 }
