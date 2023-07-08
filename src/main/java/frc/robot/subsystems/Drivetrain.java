@@ -7,8 +7,10 @@ import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.util.Units;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -20,19 +22,29 @@ import frc.robot.constants.DrivetrainConstants;
 
 public class Drivetrain extends SubsystemBase {
 
+  private double lastPitch;
+  private double pitchVelocity;
+  private LinearFilter pitchVelolcityFilter = LinearFilter.singlePoleIIR(0.1, 0.02);
+
+  private final WPI_TalonSRX motorLeftBack;
+  private final WPI_TalonSRX motorLeftFront;
+  private final WPI_TalonSRX motorRightBack;
+  private final WPI_TalonSRX motorRightFront;
+
   private final MotorControllerGroup motorsRight, motorsLeft;
   private final DifferentialDrive drive;
   private final Encoder encoderRight, encoderLeft;
   private final SmartNavX navX;
   private final DifferentialDriveOdometry odometry;
 
+
   public Drivetrain() {
-    var motorLeftBack = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftBack);
-    var motorLeftFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftFront);
+    this.motorLeftBack = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftBack);
+    this.motorLeftFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftFront);
     this.motorsLeft = new MotorControllerGroup(motorLeftBack, motorLeftFront);
 
-    var motorRightBack = new VictorSP(DrivetrainConstants.Motors.motorRightBack);
-    var motorRightFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorRightFront);
+    this.motorRightBack = new WPI_TalonSRX(DrivetrainConstants.Motors.motorRightBack);
+    this.motorRightFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorRightFront);
     this.motorsRight = new MotorControllerGroup(motorRightBack, motorRightFront);
 
     this.setMotorsInverted(
@@ -170,13 +182,31 @@ public class Drivetrain extends SubsystemBase {
     this.encoderRight.setDistancePerPulse(distancePerPulse);
   }
 
+  public void setBrakeMode() {
+    this.motorLeftBack.setNeutralMode(NeutralMode.Brake);
+    this.motorLeftFront.setNeutralMode(NeutralMode.Brake);
+    this.motorRightBack.setNeutralMode(NeutralMode.Brake);
+    this.motorRightFront.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public double getPitch() {
+    return this.navX.getPitch();
+  }
+
+  public double getPitchVelocity() {
+    return pitchVelocity;
+  }
+
   @Override
   public void periodic() {
+    pitchVelocity = pitchVelolcityFilter.calculate(getPitch() - lastPitch);
+    lastPitch = getPitch();
+
     SmartDashboard.putNumber("[DRIVETRAIN] Encoder Left", this.encoderLeft.get());
     SmartDashboard.putNumber("[DRIVETRAIN] Encoder Right", this.encoderRight.get());
     SmartDashboard.putNumber("[DRIVETRAIN] Average Distance", this.getAverageDistance());
 
-    SmartDashboard.putNumber("[DRIVETRAIN] Altitude", this.navX.getAltitude());
+    SmartDashboard.putNumber("[DRIVETRAIN] Pitch", this.navX.getPitch());
     SmartDashboard.putNumber("[DRIVETRAIN] Angle", this.navX.getAngle());
     SmartDashboard.putNumber("[LIMELIGHT] X-axis", Limelight.getX());
     SmartDashboard.putNumber("[LIMELIGHT] Y-axis", Limelight.getY());

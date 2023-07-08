@@ -9,25 +9,13 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.core.components.SmartController;
 import frc.core.util.TrajectoryBuilder;
 import frc.core.util.oi.OperatorRumble;
-import frc.robot.commands.arm.ArmMove;
-import frc.robot.commands.arm.DownArmMove;
-import frc.robot.commands.arm.UpArmMove;
-import frc.robot.commands.autonomous.MiddleNode;
 import frc.robot.commands.drivetrain.ArcadeDrive;
-import frc.robot.commands.intake.CollectPiece;
-import frc.robot.commands.intake.ReleasePiece;
-import frc.robot.commands.telescope.TelescopeMove;
 import frc.robot.constants.OIConstants;
-import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Telescope;
 
 public class RobotContainer {
   private final Drivetrain drivetrain;
-  private final Intake intake;
-  private final Arm arm;
-  private final Telescope telescope;
+
   
   private TrajectoryBuilder trajectoryBuilder;
 
@@ -36,9 +24,6 @@ public class RobotContainer {
 
   public RobotContainer() {
     this.drivetrain = new Drivetrain();
-    this.intake = new Intake();
-    this.arm = new Arm();
-    this.telescope = new Telescope();
 
     this.driver = new PS4Controller(OIConstants.driverControllerPort);
     this.operator = new SmartController(OIConstants.operatorControllerPort);
@@ -50,9 +35,6 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     this.buttonBindingsDrivetain();
-    this.buttonBindingsArm();
-    this.buttonBindingsIntake();
-    this.buttonBindingsTelescope();
   }
 
   
@@ -66,44 +48,6 @@ public class RobotContainer {
     );
   }
 
-  private void buttonBindingsArm() {
-    this.arm.setDefaultCommand(
-      new ArmMove(
-        this.arm, 
-        () -> this.operator.getLeftY()
-      )
-    );
-
-    var buttonY = new JoystickButton(this.operator, Button.kY.value);
-    buttonY.whileTrue(new UpArmMove(arm));
-
-    var buttonA = new JoystickButton(this.operator, Button.kA.value);
-    buttonA.whileTrue(new DownArmMove(arm));
-  }
-
-  private void buttonBindingsIntake() {
-    var leftBumper = new JoystickButton(this.operator, Button.kLeftBumper.value);
-    var rightBumper = new JoystickButton(this.operator, Button.kRightBumper.value);
-
-    leftBumper.whileTrue(new CollectPiece(this.intake));
-    rightBumper.whileTrue(new ReleasePiece(this.intake));
-  }
-
-  private void buttonBindingsTelescope() {
-    this.telescope.setDefaultCommand(
-      new TelescopeMove(
-        this.telescope,
-        this.operator,
-        () -> -this.operator.getRightY()
-      )
-    );
-
-    var isLimit = new Trigger(() -> this.telescope.isLimit());
-    isLimit.whileTrue(new OperatorRumble(this.operator, true));
-    isLimit.whileFalse(new OperatorRumble(this.operator, false));
-
-  }
-  
   public Command getAutonomousCommand() {
     // Command auto = new MiddleNode(drivetrain, telescope, intake, arm, trajectoryBuilder);
     
