@@ -18,13 +18,10 @@ public class BalanceRoutine extends SequentialCommandGroup {
 
         //Rodar 1 comando por vez!!
         super.addCommands(
-            new SetBrakeMode(drivetrain),
-            new DriveToPitch(drivetrain, 10, 0.2), //ver valores
-            new PrintCommand("PITCH"),
-            new DriveToDistance(drivetrain, 0.65, 0.3),
-            new PrintCommand("DRIVEN"),
-            new Balance(drivetrain, 0),
-            new PrintCommand("BALANCED")
+            // new SetBrakeMode(drivetrain)
+            new DriveToPitch(drivetrain), //ver valores
+            new DriveToDistance(drivetrain),
+            new Balance(drivetrain)
         );
 
     } 

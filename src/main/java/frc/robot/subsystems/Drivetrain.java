@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.util.Units;
 
@@ -46,6 +45,11 @@ public class Drivetrain extends SubsystemBase {
     this.motorRightBack = new WPI_TalonSRX(DrivetrainConstants.Motors.motorRightBack);
     this.motorRightFront = new WPI_TalonSRX(DrivetrainConstants.Motors.motorRightFront);
     this.motorsRight = new MotorControllerGroup(motorRightBack, motorRightFront);
+ 
+    this.motorLeftBack.setNeutralMode(NeutralMode.Coast);
+    this.motorRightBack.setNeutralMode(NeutralMode.Coast);
+    this.motorLeftFront.setNeutralMode(NeutralMode.Coast);
+    this.motorRightFront.setNeutralMode(NeutralMode.Coast);
 
     this.setMotorsInverted(
       DrivetrainConstants.Motors.isMotorsLeftInverted,
@@ -205,6 +209,7 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("[DRIVETRAIN] Encoder Left", this.encoderLeft.get());
     SmartDashboard.putNumber("[DRIVETRAIN] Encoder Right", this.encoderRight.get());
     SmartDashboard.putNumber("[DRIVETRAIN] Average Distance", this.getAverageDistance());
+    SmartDashboard.putNumber("[DRIVETRAIN] Pitch Velocity", this.pitchVelocity);
 
     SmartDashboard.putNumber("[DRIVETRAIN] Pitch", this.navX.getPitch());
     SmartDashboard.putNumber("[DRIVETRAIN] Angle", this.navX.getAngle());
