@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class OperatorRumble extends CommandBase{
+public class SmartRumble extends CommandBase{
 
   private static final int ENABLED = 1;
   private static final int DISABLED = 0;
@@ -13,7 +13,7 @@ public class OperatorRumble extends CommandBase{
 
   private double rumble;
 
-  public OperatorRumble(XboxController operator, boolean isEnabled) {
+  public SmartRumble(XboxController operator, boolean isEnabled) {
     this.operator = operator;
 
     this.rumble = isEnabled ? ENABLED : DISABLED;

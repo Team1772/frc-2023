@@ -197,6 +197,10 @@ public class Drivetrain extends SubsystemBase {
     return this.navX.getPitch();
   }
 
+  public boolean isBalanced() {
+    return Math.abs(this.getPitch())<5;
+  }
+
   public double getPitchVelocity() {
     return pitchVelocity;
   }

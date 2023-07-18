@@ -1,6 +1,7 @@
-package frc.robot;
+package frc.core.util.oi;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -38,16 +39,71 @@ public class DriverController {
         this.xLeft = new POVButton(controller, 270);
     }
 
+    public XboxController getController() {
+        return controller;
+    }
+
+    public JoystickButton getXButton() {
+        return xButton;
+    }
+
+    public JoystickButton getAButton() {
+        return aButton;
+    }
+
+    public JoystickButton getBButton() {
+        return bButton;
+    }
+
+    public JoystickButton getYButton() {
+        return yButton;
+    }
+
+    public JoystickButton getLeftBumper() {
+        return leftBumper;
+    }
+
+    public JoystickButton getRightBumper() {
+        return rightBumper;
+    }
+
+    public JoystickButton getStartButton() {
+        return startButton;
+    }
+
+    public JoystickButton getSelectButton() {
+        return selectButton;
+    }
+
+    public POVButton getXUp() {
+        return xUp;
+    }
+
+    public POVButton getXDown() {
+        return xDown;
+    }
+
+    public POVButton getXRight() {
+        return xRight;
+    }
+
+    public POVButton getXLeft() {
+        return xLeft;
+    }
+
     // Face buttons
     public void whileXButton(Command command) {
         xButton.whileTrue(command);
     }
+
     public void whileAButton(Command command) {
         aButton.whileTrue(command);
     }
+
     public void whileBButton(Command command) {
         bButton.whileTrue(command);
     }
+
     public void whileYButton(Command command) {
         yButton.whileTrue(command);
     }
@@ -56,20 +112,24 @@ public class DriverController {
     public void whileXUp(Command command) {
         xUp.whileTrue(command);
     }
+
     public void whileXDown(Command command) {
         xDown.whileTrue(command);
     }
+
     public void whileXRight(Command command) {
         xRight.whileTrue(command);
     }
+
     public void whileXLeft(Command command) {
         xLeft.whileTrue(command);
     }
-    
+
     // Shoudler buttons
     public void whileLeftBumper(Command command) {
         leftBumper.whileTrue(command);
     }
+
     public void whileRightBumper(Command command) {
         rightBumper.whileTrue(command);
     }
@@ -78,14 +138,16 @@ public class DriverController {
     public double getLeftTrigger() {
         return controller.getLeftTriggerAxis();
     }
+
     public double getRightTrigger() {
         return controller.getRightTriggerAxis();
     }
-    
+
     // Start and select
     public void whileStartButton(Command command) {
         startButton.whileTrue(command);
     }
+
     public void whileSelectButton(Command command) {
         selectButton.whileTrue(command);
     }
@@ -105,5 +167,14 @@ public class DriverController {
 
     public double getRightY() {
         return controller.getRightY();
+    }
+
+    public Command enableRumble() {
+        return new SmartRumble(this.controller, true);
+    }
+
+    public Command disableRumble() {
+        return new SmartRumble(this.controller, false);
+
     }
 }
