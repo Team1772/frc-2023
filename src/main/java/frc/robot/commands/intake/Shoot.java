@@ -7,6 +7,7 @@ import frc.robot.subsystems.Intake;
 public class Shoot extends CommandBase {
   private final Intake intake;
   
+  
 
   public Shoot(Intake intake) {
     this.intake = intake;
