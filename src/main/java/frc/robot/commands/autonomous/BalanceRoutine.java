@@ -10,7 +10,6 @@ import frc.robot.commands.drivetrain.SetBrakeMode;
 import frc.robot.subsystems.Drivetrain;
 
 public class BalanceRoutine extends SequentialCommandGroup {
-    
     Drivetrain drivetrain;
 
     public BalanceRoutine(Drivetrain drivetrain) {
