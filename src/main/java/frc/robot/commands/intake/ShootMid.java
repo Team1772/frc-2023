@@ -3,10 +3,12 @@ package frc.robot.commands.intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
-public class Release extends CommandBase {
+public class ShootMid extends CommandBase {
   private final Intake intake;
+  
+  
 
-  public Release(Intake intake) {
+  public ShootMid(Intake intake) {
     this.intake = intake;
 
     addRequirements(this.intake);
@@ -18,11 +20,12 @@ public class Release extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(-0.2);
+    this.intake.set(-0.29);
   }
 
   @Override
   public void end(boolean isInterrupted) {
     this.intake.stop();
   }
+
 }

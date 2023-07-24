@@ -3,13 +3,11 @@ package frc.robot.constants;
 public final class IntakeConstants {
     public static final class Motors {
     public static final int
-        motorUpper = 9,
-        motorLower = 7;
-    }
+        motorUpper = 7,
+        motorLower = 6;
 
-    //public static final class Speed {
-    //public static final double
-    //    shoot =
-    //    c
-    //}
+    public static final boolean 
+        isMotorUpperInverted = true,
+        isMotorLowerInverted = false;
+    }
 }

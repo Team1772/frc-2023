@@ -19,7 +19,7 @@ public class Collect extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(0.35);
+    this.intake.set(0.27);
   }
 
   @Override
