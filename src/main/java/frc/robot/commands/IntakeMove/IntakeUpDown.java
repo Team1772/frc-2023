@@ -3,6 +3,7 @@ package frc.robot.commands.IntakeMove;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.constants.IntakeMoveConstants;
 import frc.robot.subsystems.IntakeMove;
 
 public class IntakeUpDown extends CommandBase {
@@ -21,7 +22,7 @@ public class IntakeUpDown extends CommandBase {
 
   @Override
   public void execute() {
-    this.intakeMove.set(0.5 * speed.getAsDouble());
+    this.intakeMove.set(IntakeMoveConstants.Speed.speedMultiplier * speed.getAsDouble());
   }
 
   @Override

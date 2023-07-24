@@ -1,6 +1,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 
 public class ShootMid extends CommandBase {
@@ -20,7 +21,7 @@ public class ShootMid extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(-0.29);
+    this.intake.set(IntakeConstants.Speeds.speedShootMid);
   }
 
   @Override

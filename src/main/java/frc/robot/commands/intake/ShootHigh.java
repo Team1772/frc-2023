@@ -1,14 +1,15 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 
-public class ShootUpper extends CommandBase {
+public class ShootHigh extends CommandBase {
   private final Intake intake;
   
   
 
-  public ShootUpper(Intake intake) {
+  public ShootHigh(Intake intake) {
     this.intake = intake;
 
     addRequirements(this.intake);
@@ -20,7 +21,7 @@ public class ShootUpper extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(-0.4);
+    this.intake.set(IntakeConstants.Speeds.speedShootHigh);
   }
 
   @Override

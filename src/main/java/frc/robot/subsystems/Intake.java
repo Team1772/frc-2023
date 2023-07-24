@@ -23,7 +23,7 @@ public class Intake extends SubsystemBase {
       this.motorLower = new WPI_TalonSRX(IntakeConstants.Motors.motorLower);
       this.motorLower.setInverted(IntakeConstants.Motors.isMotorLowerInverted);
 
-      this.cubeInfrared = new DigitalInput(4);
+      this.cubeInfrared = new DigitalInput(IntakeConstants.Sensor.cubeInfrared);
 
     }
     public boolean isCollectedCube(){

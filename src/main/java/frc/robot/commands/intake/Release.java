@@ -1,6 +1,7 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 
 public class Release extends CommandBase {
@@ -18,7 +19,7 @@ public class Release extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(-0.2);
+    this.intake.set(IntakeConstants.Speeds.speedRelease);
   }
 
   @Override

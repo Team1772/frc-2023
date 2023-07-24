@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.constants.IntakeMoveConstants;
 
 public class IntakeMove extends SubsystemBase {
   
@@ -13,9 +14,9 @@ public class IntakeMove extends SubsystemBase {
     private DigitalInput limit;
   
     public IntakeMove() {
-      this.motorMove = new WPI_TalonSRX(5);
-      this.motorMove.setInverted(false);
-      this.limit = new DigitalInput(5);
+      this.motorMove = new WPI_TalonSRX(IntakeMoveConstants.Motor.motorMove);
+      this.motorMove.setInverted(IntakeMoveConstants.Motor.isMotorMoveInverted);
+      this.limit = new DigitalInput(IntakeMoveConstants.Sensor.limit);
   
     }
   
