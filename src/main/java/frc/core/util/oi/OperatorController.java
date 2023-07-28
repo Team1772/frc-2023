@@ -15,6 +15,8 @@ public class OperatorController {
     private final JoystickButton yButton;
     private final JoystickButton leftBumper;
     private final JoystickButton rightBumper;
+    private final JoystickButton leftTrigger;
+    private final JoystickButton rightTrigger;
     private final JoystickButton startButton;
     private final JoystickButton selectButton;
     private final POVButton xUp;
@@ -30,6 +32,8 @@ public class OperatorController {
         this.yButton = new JoystickButton(controller, XboxController.Button.kY.value);
         this.leftBumper = new JoystickButton(controller, XboxController.Button.kLeftBumper.value);
         this.rightBumper = new JoystickButton(controller, XboxController.Button.kRightBumper.value);
+        this.leftTrigger = new JoystickButton(controller, XboxController.Axis.kLeftTrigger.value);
+        this.rightTrigger = new JoystickButton(controller, XboxController.Axis.kRightTrigger.value);
         this.startButton = new JoystickButton(controller, 6);
         this.selectButton = new JoystickButton(controller, 7);
         this.xUp = new POVButton(controller, 0);
@@ -74,6 +78,13 @@ public class OperatorController {
         return controller.getLeftTriggerAxis();
     }
 
+    public void whileRightTrigger(Command command) {
+        leftTrigger.whileTrue(command);
+    }
+
+    public void whileLeftTrigger(Command command) {
+        rightTrigger.whileTrue(command);
+    }
     // Start and select
     public void whileStartButton(Command command) {
         startButton.whileTrue(command);

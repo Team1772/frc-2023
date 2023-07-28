@@ -215,6 +215,7 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("[DRIVETRAIN] Average Distance", this.getAverageDistance());
     SmartDashboard.putNumber("[DRIVETRAIN] Pitch Velocity", this.pitchVelocity);
 
+    SmartDashboard.putNumber("[DRIVETRAIN] Altitude", this.navX.getAltitude());
     SmartDashboard.putNumber("[DRIVETRAIN] Pitch", this.navX.getPitch());
     SmartDashboard.putNumber("[DRIVETRAIN] Angle", this.navX.getAngle());
     SmartDashboard.putNumber("[LIMELIGHT] X-axis", Limelight.getX());

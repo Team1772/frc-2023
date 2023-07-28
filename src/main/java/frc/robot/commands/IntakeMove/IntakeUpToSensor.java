@@ -4,15 +4,16 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.constants.IntakeMoveConstants;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeMove;
 
-public class IntakeUpDown extends CommandBase {
+public class IntakeUpToSensor extends CommandBase {
   private IntakeMove intakeMove;
-  private DoubleSupplier speed;
+  private double speed;
   
-  public IntakeUpDown(IntakeMove intakeMove, DoubleSupplier speed) {
+  public IntakeUpToSensor(IntakeMove intakeMove) {
     this.intakeMove = intakeMove;
-    this.speed = speed;
+    this.speed = 0.42;
 
     addRequirements(this.intakeMove);
   }
@@ -22,16 +23,17 @@ public class IntakeUpDown extends CommandBase {
 
   @Override
   public void execute() {
-    if(this.intakeMove.isLimitMax() && speed.getAsDouble() > 0) {
-      this.intakeMove.stop();
-    }else if(this.intakeMove.isLimitMin() && speed.getAsDouble() < 0) { 
-      this.intakeMove.stop();
-    }else
-    this.intakeMove.set(IntakeMoveConstants.Speed.speedMultiplier * speed.getAsDouble());
+    this.intakeMove.set(this.speed);
+  }
+  
+  @Override
+  public boolean isFinished() {
+    return this.intakeMove.isLimitMax();
   }
 
   @Override
   public void end(boolean isInterrupted) {
     this.intakeMove.stop();
   }
+
 }

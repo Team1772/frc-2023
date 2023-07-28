@@ -14,15 +14,25 @@ public final class IntakeConstants {
 
     public static final class Sensor {
         public static final int
-            cubeInfrared = 4;
+            cubeInfrared = 3;
     }
 
     public static final class Speeds {
         public static final double
-            speedCollect = 0.27,
-            speedRelease = -0.2,
-            speedShootMid = -0.29,
-            speedShootHigh = -0.4;
+            speedCollect = -0.27,
+            speedRelease = 0.3,
+            speedShootMid = 0.45,
+            speedShootHigh = 0.56;
     }
 
+    public static final class Solenoid {
+        public static final int
+            solenoidOpen = 6,
+            solenoidClose = 7;
+    }
+
+    public static final class Seconds {
+        public static final int
+            autoShootSeconds = 3;
+    }
 }

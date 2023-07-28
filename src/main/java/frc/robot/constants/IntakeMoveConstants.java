@@ -11,12 +11,13 @@ public class IntakeMoveConstants {
 
     public static final class Sensor {
         public static final int
-            limit = 5;
+            limitMax = 2,
+            limitMin = 1;
     }
 
     public static final class Speed{
         public static final double
-            speedMultiplier = 0.5;
+            speedMultiplier = 1;
     }
 
 }

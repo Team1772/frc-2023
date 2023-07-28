@@ -11,12 +11,14 @@ import frc.robot.constants.IntakeMoveConstants;
 public class IntakeMove extends SubsystemBase {
   
     private WPI_TalonSRX motorMove;
-    private DigitalInput limit;
+    private DigitalInput limitMax;
+    private DigitalInput limitMin;
   
     public IntakeMove() {
       this.motorMove = new WPI_TalonSRX(IntakeMoveConstants.Motor.motorMove);
       this.motorMove.setInverted(IntakeMoveConstants.Motor.isMotorMoveInverted);
-      this.limit = new DigitalInput(IntakeMoveConstants.Sensor.limit);
+      this.limitMax = new DigitalInput(IntakeMoveConstants.Sensor.limitMax);
+      this.limitMin = new DigitalInput(IntakeMoveConstants.Sensor.limitMin);
   
     }
   
@@ -24,8 +26,12 @@ public class IntakeMove extends SubsystemBase {
       this.motorMove.set(ControlMode.PercentOutput, speed);
     }
 
-    public boolean isLimit(){
-      return this.limit.get();
+    public boolean isLimitMax(){
+      return !this.limitMax.get();
+    }
+
+    public boolean isLimitMin(){
+      return this.limitMin.get();
     }
   
     public void stop() {
@@ -34,7 +40,8 @@ public class IntakeMove extends SubsystemBase {
   
     @Override
     public void periodic() {
-      SmartDashboard.putBoolean("Is limit", isLimit());
+      SmartDashboard.putBoolean("Is limit Max", isLimitMax());
+      SmartDashboard.putBoolean("Is limit Min", isLimitMin());
     }
   }
   

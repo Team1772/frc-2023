@@ -19,7 +19,7 @@ public class BalanceRoutine extends SequentialCommandGroup {
         super.addCommands(
             // new SetBrakeMode(drivetrain)
             new DriveToPitch(drivetrain), //ver valores
-            new DriveToDistance(drivetrain),
+            new DriveToDistance(drivetrain, 0.65),
             new Balance(drivetrain)
         );
 

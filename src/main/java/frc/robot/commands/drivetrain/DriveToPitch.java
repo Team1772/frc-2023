@@ -5,7 +5,7 @@ import frc.robot.subsystems.Drivetrain;
 
 public class DriveToPitch extends CommandBase {
     private static final double SPEED = 0.6;
-    private static final double PITCH = 10;
+    private static final double PITCH = 5;
     private Drivetrain drivetrain;
 
     public DriveToPitch(Drivetrain drivetrain) {
@@ -31,7 +31,7 @@ public class DriveToPitch extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return drivetrain.getPitch() >= PITCH;
+        return Math.abs(drivetrain.getPitch()) >= PITCH;
     }
 
 }

@@ -15,6 +15,7 @@ public class ShootHigh extends CommandBase {
     addRequirements(this.intake);
   }
 
+  
 
   @Override
   public void initialize() {}
