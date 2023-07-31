@@ -21,7 +21,7 @@ public class DriveToPitch extends CommandBase {
 
     @Override
     public void execute() {
-        this.drivetrain.arcadeDrive(SPEED, 0);
+        this.drivetrain.arcadeDrive(-SPEED, 0);
     }
 
     @Override

@@ -7,10 +7,14 @@ import frc.core.util.oi.DriverController;
 import frc.core.util.oi.OperatorController;
 import frc.robot.commands.IntakeMove.IntakeUpDown;
 import frc.robot.commands.Poker.Poke;
+import frc.robot.commands.autonomous.Auto1;
+import frc.robot.commands.autonomous.Auto2;
+import frc.robot.commands.autonomous.Auto4;
 import frc.robot.commands.autonomous.BalanceRoutine;
 import frc.robot.commands.autonomous.Test;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.intake.Collect;
+import frc.robot.commands.intake.PieceRumble;
 import frc.robot.commands.intake.Release;
 import frc.robot.commands.intake.ShootMid;
 import frc.robot.commands.intake.ShootHigh;
@@ -38,7 +42,6 @@ public class RobotContainer {
     this.operator = new OperatorController();
     configureButtonBindings(); 
     
-    //this.poker.getCompressor().enableDigital();
   }
 
   private void configureButtonBindings() {
@@ -59,18 +62,18 @@ public class RobotContainer {
     );
   }
 
-  private void buttonBindingsPoke(){
-    this.driver.whileLeftBumper(new Poke(poker, true));
-    this.driver.whileRightBumper(new Poke(poker, false));
-  }
+   private void buttonBindingsPoke(){
+     this.driver.whileLeftBumper(new Poke(poker, true));
+     this.driver.whileRightBumper(new Poke(poker, false));
+   }
 
   private void buttonBindingsIntakeMove(){
-    // this.intakeMove.setDefaultCommand(
-    //   new IntakeUpDown(
-    //     this.intakeMove, 
-    //     () -> -operator.getRightY()
-    //   )
-    // );
+    this.intakeMove.setDefaultCommand(
+      new IntakeUpDown(
+        this.intakeMove, 
+        () -> -operator.getRightY()
+      )
+    );
 
     this.operator.whileYButton(new IntakeUpDown(intakeMove, () -> 0.92));
     this.operator.whileBButton(new IntakeUpDown(intakeMove, () -> -0.92));
@@ -82,13 +85,20 @@ public class RobotContainer {
     this.operator.whileLeftBumper(new Collect(intake));
     this.operator.whileRightBumper(new ShootHigh(intake));
 
+    if(intake.isCollectedCube()) {
+      new PieceRumble(intake, operator, driver);
+    }
+
     
   }
 
-  public Command getAutonomousCommand() {
-    Command auto = new BalanceRoutine(drivetrain);
-    //Command auto = new Test(drivetrain, trajectoryBuilder); 
+  
 
-    return auto;
+  public Command getAutonomousCommand() {
+    
+    Command auto = new Auto1(drivetrain, poker, intake, intakeMove);
+    //Command auto = new Test(drivetrain, null); 
+
+     return auto;
   }
 }

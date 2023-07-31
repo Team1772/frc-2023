@@ -1,13 +1,16 @@
 package frc.robot.commands.Poker;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Poker;
 
-public class Poke extends CommandBase {
+public class PokeTimer extends CommandBase {
     private Poker poker;
     private boolean control;
     
-    public Poke(Poker poker, boolean control) {
+    private Timer timer;
+
+    public PokeTimer(Poker poker, boolean control) {
       this.poker = poker;
       this.control = control;
   
@@ -15,24 +18,23 @@ public class Poke extends CommandBase {
     }
   
     @Override
-    public void initialize() {}
+    public void initialize() {
+      this.timer.start();
+    }
   
     @Override
     public void execute() {
-      if (this.control == true) {
-        this.poker.poke();
-      } else {
-        this.poker.unpoke();
-      }
+      this.poker.poke();
     }
 
     @Override
     public boolean isFinished() {
-      return true;
+      return timer.hasElapsed(1);
     }
   
     @Override
     public void end(boolean isInterrupted) {
-      //this.poker.unpoke();
+      this.poker.unpoke();
+      this.timer.stop();
     }
   }

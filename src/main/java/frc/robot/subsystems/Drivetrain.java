@@ -1,11 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.math.util.Units;
-
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -14,6 +8,11 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core.components.Limelight;
 import frc.core.components.SmartNavX;
@@ -222,7 +221,33 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("[LIMELIGHT] Y-axis", Limelight.getY());
     SmartDashboard.putNumber("[LIMELIGHT] Target Area", Limelight.getA());
     SmartDashboard.putNumber("[LIMELIGHT] Is On Target", Limelight.getV());
+    
 
+
+    SmartDashboard.putNumber("[MLB] getOutputCurrent", motorLeftBack.getOutputCurrent());
+    SmartDashboard.putNumber("[MLB]Get Motor output voltage", motorLeftBack.getMotorOutputVoltage());
+    SmartDashboard.putNumber("[MLB] getBusVoltage", motorLeftBack.getBusVoltage());
+    SmartDashboard.putNumber("[MLB] getSupplyCurrent", motorLeftBack.getSupplyCurrent());
+    SmartDashboard.putNumber("[MLB] getBusVoltage", motorLeftBack.getStatorCurrent());
+
+    SmartDashboard.putNumber("[MLF] getOutputCurrent", motorLeftFront.getOutputCurrent());
+    SmartDashboard.putNumber("[MLF]Get Motor output voltage", motorLeftFront.getMotorOutputVoltage());
+    SmartDashboard.putNumber("[MLF] getBusVoltage", motorLeftFront.getBusVoltage());
+    SmartDashboard.putNumber("[MLF] getSupplyCurrent", motorLeftFront.getSupplyCurrent());
+    SmartDashboard.putNumber("[MLF] getBusVoltage", motorLeftFront.getStatorCurrent());
+
+    SmartDashboard.putNumber("[MRB] getOutputCurrent", motorRightBack.getOutputCurrent());
+    SmartDashboard.putNumber("[MRB]Get Motor output voltage", motorRightBack.getMotorOutputVoltage());
+    SmartDashboard.putNumber("[MRB] getBusVoltage", motorRightBack.getBusVoltage());
+    SmartDashboard.putNumber("[MRB] getSupplyCurrent", motorRightBack.getSupplyCurrent());
+    SmartDashboard.putNumber("[MRB] getBusVoltage", motorRightBack.getStatorCurrent());
+
+    SmartDashboard.putNumber("[MRF] getOutputCurrent", motorRightFront.getOutputCurrent());
+    SmartDashboard.putNumber("[MRF]Get Motor output voltage", motorRightFront.getMotorOutputVoltage());
+    SmartDashboard.putNumber("[MRF] getBusVoltage", motorRightFront.getBusVoltage());
+    SmartDashboard.putNumber("[MRF] getSupplyCurrent", motorRightFront.getSupplyCurrent());
+    SmartDashboard.putNumber("[MRF] getBusVoltage", motorRightFront.getStatorCurrent());
+    
     this.updateOdometry();
   }
 }

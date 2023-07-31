@@ -127,4 +127,14 @@ public class OperatorController {
     public double getRightY() {
         return controller.getRightY();
     }
+
+
+    public Command enableRumble() {
+        return new SmartRumble(this.controller, true);
+    }
+
+    public Command disableRumble() {
+        return new SmartRumble(this.controller, false);
+
+    }
 }

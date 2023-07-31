@@ -31,8 +31,9 @@ public class ShootHighTimer extends CommandBase {
   @Override
   public void execute() {
     this.intake.set(IntakeConstants.Speeds.speedShootHigh);
-    if(this.timer.hasElapsed(IntakeConstants.Seconds.autoShootSeconds - 0.5)){
-      new Poke(poker, true);
+    if(this.timer.hasElapsed(IntakeConstants.Seconds.autoShootSeconds - 1)){
+      this.poker.poke();
+      //new Poke(poker, true);
     }
   }
 
@@ -44,6 +45,7 @@ public class ShootHighTimer extends CommandBase {
   @Override
   public void end(boolean isInterrupted) {
     this.intake.stop();
+    this.poker.unpoke();
   }
 
 }

@@ -6,6 +6,7 @@ import frc.robot.commands.IntakeMove.IntakeUpDown;
 import frc.robot.commands.IntakeMove.IntakeUpToSensor;
 import frc.robot.commands.Poker.Poke;
 import frc.robot.commands.drivetrain.DriveToDistance;
+import frc.robot.commands.drivetrain.ReverseTimer;
 import frc.robot.commands.intake.ShootHigh;
 import frc.robot.commands.intake.ShootHighTimer;
 import frc.robot.subsystems.Drivetrain;
@@ -18,10 +19,12 @@ public class Auto2 extends SequentialCommandGroup {
     public Auto2(Drivetrain drivetrain, Intake intake, IntakeMove intakeMove, Poker poker) {
         super.addCommands(
             new IntakeUpToSensor(intakeMove),
-            new WaitCommand(2),
+            new WaitCommand(1),
             new ShootHighTimer(intake, poker),
-            new WaitCommand(2),
-            new BalanceRoutine(drivetrain)
+            new WaitCommand(1),
+            //new Poke(poker, false),
+            new BalanceRoutine(drivetrain),
+            new ReverseTimer(drivetrain, 0.2)
         );
 
     } 

@@ -7,6 +7,8 @@ import frc.robot.commands.IntakeMove.IntakeUpToSensor;
 import frc.robot.commands.Poker.Poke;
 import frc.robot.commands.drivetrain.Balance;
 import frc.robot.commands.drivetrain.DriveToDistance;
+import frc.robot.commands.drivetrain.ForwardTimer;
+import frc.robot.commands.drivetrain.ReverseTimer;
 import frc.robot.commands.intake.ShootHigh;
 import frc.robot.commands.intake.ShootHighTimer;
 import frc.robot.subsystems.Drivetrain;
@@ -22,11 +24,11 @@ public class Auto4 extends SequentialCommandGroup {
             new WaitCommand(2),
             new ShootHighTimer(intake, poker),
             new WaitCommand(2),
-            //new ReverseTimer(drivetrain, 2.3),
-            new DriveToDistance(drivetrain, 5),
+            new ReverseTimer(drivetrain, 2.3),
+            //new DriveToDistance(drivetrain, 5),
             new WaitCommand(2),
-            //new ForwardTimer(drivetrain, 1),
-            new DriveToDistance(drivetrain, -2),
+            new Poke(poker, false),
+            new ForwardTimer(drivetrain, 2),
             new Balance(drivetrain)
         );
 

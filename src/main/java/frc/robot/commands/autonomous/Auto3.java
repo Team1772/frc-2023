@@ -22,8 +22,9 @@ public class Auto3 extends SequentialCommandGroup {
             new WaitCommand(1),
             new ShootHighTimer(intake, poker),
             new WaitCommand(2),
-            //new ReverseTimer(drivetrain, 1.8),
-            new DriveToDistance(drivetrain, 3.2),
+            new ReverseTimer(drivetrain, 0.8),
+            
+            //new DriveToDistance(drivetrain, 3.2),
             new Poke(poker, false)
         );
 

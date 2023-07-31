@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core.components.solenoids.SmartDoubleSolenoid;
+import frc.robot.commands.intake.PieceRumble;
 import frc.robot.constants.IntakeConstants;
 
 public class Intake extends SubsystemBase {

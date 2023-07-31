@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drivetrain.Balance;
 import frc.robot.commands.drivetrain.DriveToDistance;
 import frc.robot.commands.drivetrain.DriveToPitch;
+import frc.robot.commands.drivetrain.ReverseTimer;
 import frc.robot.commands.drivetrain.SetBrakeMode;
 import frc.robot.subsystems.Drivetrain;
 
@@ -19,7 +20,8 @@ public class BalanceRoutine extends SequentialCommandGroup {
         super.addCommands(
             // new SetBrakeMode(drivetrain)
             new DriveToPitch(drivetrain), //ver valores
-            new DriveToDistance(drivetrain, 0.65),
+            new ReverseTimer(drivetrain, 1.1),
+            //new DriveToDistance(drivetrain, 0.65),
             new Balance(drivetrain)
         );
 

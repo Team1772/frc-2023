@@ -45,7 +45,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    new Poke(new Poker(), false); // Se der erro, TIRAR!!
   }
 
   @Override

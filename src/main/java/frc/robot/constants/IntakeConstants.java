@@ -19,10 +19,10 @@ public final class IntakeConstants {
 
     public static final class Speeds {
         public static final double
-            speedCollect = -0.27,
+            speedCollect = -0.33,
             speedRelease = 0.3,
             speedShootMid = 0.45,
-            speedShootHigh = 0.56;
+            speedShootHigh = 0.4;
     }
 
     public static final class Solenoid {

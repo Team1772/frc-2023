@@ -13,7 +13,7 @@ public class IntakeUpToSensor extends CommandBase {
   
   public IntakeUpToSensor(IntakeMove intakeMove) {
     this.intakeMove = intakeMove;
-    this.speed = 0.42;
+    this.speed = 0.22;
 
     addRequirements(this.intakeMove);
   }
