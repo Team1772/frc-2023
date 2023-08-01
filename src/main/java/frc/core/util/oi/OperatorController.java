@@ -40,8 +40,9 @@ public class OperatorController {
         this.xDown = new POVButton(controller, 180);
         this.xRight = new POVButton(controller, 90);
         this.xLeft = new POVButton(controller, 270);
-
     }
+
+
 
     // Face buttons
     public void whileXButton(Command command) {
@@ -67,6 +68,14 @@ public class OperatorController {
 
     public void whileRightBumper(Command command) {
         rightBumper.whileTrue(command);
+    }
+
+    public void onTrueLeftBumper(Command command) {
+        leftBumper.onTrue(command);
+    }
+
+    public void onTrueRightBumper(Command command) {
+        rightBumper.onTrue(command);
     }
 
     // Triggers

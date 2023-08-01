@@ -1,12 +1,10 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core.util.oi.DriverController;
 import frc.core.util.oi.OperatorController;
-import frc.core.util.oi.SmartRumble;
-import frc.robot.constants.IntakeConstants;
+
 import frc.robot.subsystems.Intake;
 
 public class PieceRumble extends CommandBase {

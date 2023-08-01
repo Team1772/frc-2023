@@ -6,13 +6,11 @@ import frc.robot.subsystems.Poker;
 
 public class PokeTimer extends CommandBase {
     private Poker poker;
-    private boolean control;
     
     private Timer timer;
 
-    public PokeTimer(Poker poker, boolean control) {
+    public PokeTimer(Poker poker) {
       this.poker = poker;
-      this.control = control;
   
       addRequirements(this.poker);
     }
@@ -29,7 +27,7 @@ public class PokeTimer extends CommandBase {
 
     @Override
     public boolean isFinished() {
-      return timer.hasElapsed(1);
+      return timer.hasElapsed(2);
     }
   
     @Override

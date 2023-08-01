@@ -3,13 +3,13 @@ package frc.robot.commands.IntakeMove;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMove;
 
-public class IntakeUpToSensor extends CommandBase {
+public class IntakeDownToSensor extends CommandBase {
   private IntakeMove intakeMove;
   private double speed;
   
-  public IntakeUpToSensor(IntakeMove intakeMove) {
+  public IntakeDownToSensor(IntakeMove intakeMove) {
     this.intakeMove = intakeMove;
-    this.speed = 0.28;
+    this.speed = -0.28;
 
     addRequirements(this.intakeMove);
   }
@@ -24,7 +24,7 @@ public class IntakeUpToSensor extends CommandBase {
   
   @Override
   public boolean isFinished() {
-    return this.intakeMove.isLimitMax();
+    return this.intakeMove.isLimitMin();
   }
 
   @Override

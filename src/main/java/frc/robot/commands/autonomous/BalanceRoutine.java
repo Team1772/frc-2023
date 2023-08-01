@@ -1,7 +1,5 @@
 package frc.robot.commands.autonomous;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.drivetrain.Balance;
 import frc.robot.commands.drivetrain.DriveToDistance;

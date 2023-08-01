@@ -33,6 +33,7 @@ public final class IntakeConstants {
 
     public static final class Seconds {
         public static final int
-            autoShootSeconds = 3;
+            autoShootSeconds = 3,
+            autoCollectSeconds = 5;
     }
 }

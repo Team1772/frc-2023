@@ -1,19 +1,16 @@
 package frc.robot.commands.drivetrain;
 
 import frc.robot.subsystems.Drivetrain;
-
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Turn extends CommandBase {
+public class TurnTimer extends CommandBase {
   private Drivetrain drivetrain;
   private Timer timer;
 
   private double seconds;
 
-  public Turn(Drivetrain drivetrain, double seconds) {
+  public TurnTimer(Drivetrain drivetrain, double seconds) {
     this.drivetrain = drivetrain;
 
     this.timer = new Timer();

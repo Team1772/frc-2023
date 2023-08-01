@@ -7,8 +7,10 @@ import frc.core.util.oi.DriverController;
 import frc.core.util.oi.OperatorController;
 import frc.robot.commands.IntakeMove.IntakeUpDown;
 import frc.robot.commands.Poker.Poke;
+import frc.robot.commands.Poker.PokeTimer;
 import frc.robot.commands.autonomous.Auto1;
 import frc.robot.commands.autonomous.Auto2;
+import frc.robot.commands.autonomous.Auto3;
 import frc.robot.commands.autonomous.Auto4;
 import frc.robot.commands.autonomous.BalanceRoutine;
 import frc.robot.commands.autonomous.Test;
@@ -41,7 +43,6 @@ public class RobotContainer {
     this.driver = new DriverController();
     this.operator = new OperatorController();
     configureButtonBindings(); 
-    
   }
 
   private void configureButtonBindings() {
@@ -63,8 +64,10 @@ public class RobotContainer {
   }
 
    private void buttonBindingsPoke(){
-     this.driver.whileLeftBumper(new Poke(poker, true));
-     this.driver.whileRightBumper(new Poke(poker, false));
+     //this.driver.whileLeftBumper(new Poke(poker, true));
+     //this.driver.whileRightBumper(new Poke(poker, false));
+
+     this.driver.onTrueLeftBumper(new PokeTimer(poker));
    }
 
   private void buttonBindingsIntakeMove(){
@@ -85,9 +88,9 @@ public class RobotContainer {
     this.operator.whileLeftBumper(new Collect(intake));
     this.operator.whileRightBumper(new ShootHigh(intake));
 
-    if(intake.isCollectedCube()) {
+/*  if(intake.isCollectedCube()) {
       new PieceRumble(intake, operator, driver);
-    }
+    } */
 
     
   }
@@ -95,10 +98,11 @@ public class RobotContainer {
   
 
   public Command getAutonomousCommand() {
-    
-    Command auto = new Auto1(drivetrain, poker, intake, intakeMove);
-    //Command auto = new Test(drivetrain, null); 
+    Command auto1 = new Auto1(drivetrain, intake, intakeMove, poker);
+    Command auto2 = new Auto2(drivetrain, intake, intakeMove, poker);
+    Command auto3 = new Auto3(drivetrain, intake, intakeMove, poker);
+    Command auto4 = new Auto4(drivetrain, intake, intakeMove, poker);
 
-     return auto;
+     return auto1;
   }
 }
