@@ -29,7 +29,7 @@ public class Turn extends CommandBase {
 
   @Override
   public void execute() {
-    this.drivetrain.arcadeDrive(0, 0.6);
+    this.drivetrain.arcadeDrive(-0.3, -0.67);
   }
 
   @Override

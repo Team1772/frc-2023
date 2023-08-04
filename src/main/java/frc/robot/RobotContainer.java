@@ -9,7 +9,9 @@ import frc.robot.commands.IntakeMove.IntakeUpDown;
 import frc.robot.commands.Poker.Poke;
 import frc.robot.commands.autonomous.Auto1;
 import frc.robot.commands.autonomous.Auto2;
+import frc.robot.commands.autonomous.Auto3;
 import frc.robot.commands.autonomous.Auto4;
+import frc.robot.commands.autonomous.AutoNothing;
 import frc.robot.commands.autonomous.BalanceRoutine;
 import frc.robot.commands.autonomous.Test;
 import frc.robot.commands.drivetrain.ArcadeDrive;
@@ -17,6 +19,7 @@ import frc.robot.commands.intake.Collect;
 import frc.robot.commands.intake.PieceRumble;
 import frc.robot.commands.intake.Release;
 import frc.robot.commands.intake.ShootMid;
+import frc.robot.commands.intake.ShootSuperHigh;
 import frc.robot.commands.intake.ShootHigh;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
@@ -25,7 +28,7 @@ import frc.robot.subsystems.Poker;
 
 public class RobotContainer {
   private final Drivetrain drivetrain;
-  private IntakeMove intakeMove;
+  private final IntakeMove intakeMove;
   private final Intake intake;
   private final Poker poker;
 
@@ -49,6 +52,7 @@ public class RobotContainer {
     this.buttonBindingsIntakeMove();
     this.buttonBindingsIntake();
     this.buttonBindingsPoke();
+    this.buttonBindingsRumble();
   }
 
   
@@ -61,6 +65,14 @@ public class RobotContainer {
       )
     );
   }
+  
+  private void buttonBindingsRumble() {
+    this.intake.setDefaultCommand(
+      new PieceRumble(intake, operator, driver)
+    );
+  }
+
+
 
    private void buttonBindingsPoke(){
      this.driver.whileLeftBumper(new Poke(poker, true));
@@ -82,23 +94,23 @@ public class RobotContainer {
   private void buttonBindingsIntake(){
     this.operator.whileAButton(new Release(intake));
     this.operator.whileXButton(new ShootMid(intake));
-    this.operator.whileLeftBumper(new Collect(intake));
     this.operator.whileRightBumper(new ShootHigh(intake));
-
-    if(intake.isCollectedCube()) {
-      new PieceRumble(intake, operator, driver);
-    }
-
-    
+    this.operator.whileXUp(new ShootSuperHigh(intake));
+    this.operator.whileLeftBumper(new Collect(intake));
   }
 
   
 
   public Command getAutonomousCommand() {
     
-    Command auto = new Auto1(drivetrain, poker, intake, intakeMove);
+
+    Command auto1 = new Auto1(drivetrain, poker, intake, intakeMove);
+    Command auto2 = new Auto2(drivetrain, intake, intakeMove, poker);
+    Command auto3 = new Auto3(drivetrain, poker, intake, intakeMove);
+    Command auto4 = new Auto4(drivetrain, intake, intakeMove, poker);
+    Command autoNothing = new AutoNothing(drivetrain, intake, intakeMove, poker);
     //Command auto = new Test(drivetrain, null); 
 
-     return auto;
+     return auto3;
   }
 }

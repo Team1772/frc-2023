@@ -16,13 +16,10 @@ public class BalanceRoutine extends SequentialCommandGroup {
     public BalanceRoutine(Drivetrain drivetrain) {
         this.drivetrain = drivetrain;
 
-        //Rodar 1 comando por vez!!
         super.addCommands(
-            // new SetBrakeMode(drivetrain)
-            new DriveToPitch(drivetrain), //ver valores
-            new ReverseTimer(drivetrain, 1.1),
-            //new DriveToDistance(drivetrain, 0.65),
-            new Balance(drivetrain)
+            new DriveToPitch(drivetrain, 0.88, 9),
+            new DriveToPitch(drivetrain, 0.4, -2),
+            new Balance(drivetrain, -0.3, 2, 0.4)
         );
 
     } 

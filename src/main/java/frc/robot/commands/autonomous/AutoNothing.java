@@ -15,16 +15,15 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeMove;
 import frc.robot.subsystems.Poker;
 
-public class Auto2 extends SequentialCommandGroup {
+public class AutoNothing extends SequentialCommandGroup {
 
-    public Auto2(Drivetrain drivetrain, Intake intake, IntakeMove intakeMove, Poker poker) {
+    public AutoNothing(Drivetrain drivetrain, Intake intake, IntakeMove intakeMove, Poker poker) {
         super.addCommands(
             new IntakeUpToSensor(intakeMove),
             new WaitCommand(1),
             new ShootHighTimer(intake, poker),
             new WaitCommand(1),
-            new Poke(poker, false),
-            new BalanceRoutine(drivetrain)
+            new Poke(poker, false)
         );
 
     } 

@@ -32,7 +32,7 @@ public class Intake extends SubsystemBase {
     }
     
     public boolean isCollectedCube(){
-      return !this.cubeInfrared.get();
+      return this.cubeInfrared.get();
     } 
   
     public void set(double speed) {

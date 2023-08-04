@@ -2,6 +2,7 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.IntakeMove.IntakeDownToSensor;
 import frc.robot.commands.IntakeMove.IntakeUpDown;
 import frc.robot.commands.IntakeMove.IntakeUpToSensor;
 import frc.robot.commands.Poker.Poke;
@@ -28,8 +29,7 @@ public class Auto4 extends SequentialCommandGroup {
             //new DriveToDistance(drivetrain, 5),
             new WaitCommand(2),
             new Poke(poker, false),
-            new ForwardTimer(drivetrain, 2),
-            new Balance(drivetrain)
+            new Balance(drivetrain, -0.3, 2, 0.4)
         );
 
     } 

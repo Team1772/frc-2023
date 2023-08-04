@@ -4,12 +4,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
 public class DriveToPitch extends CommandBase {
-    private static final double SPEED = 0.6;
-    private static final double PITCH = 5;
+    private double speed;
+    private double pitch;
     private Drivetrain drivetrain;
 
-    public DriveToPitch(Drivetrain drivetrain) {
+    public DriveToPitch(Drivetrain drivetrain, double speed, double pitch) {
         this.drivetrain = drivetrain;
+        this.speed = speed;
+        this.pitch = pitch;
 
         addRequirements(this.drivetrain);
     }
@@ -21,7 +23,7 @@ public class DriveToPitch extends CommandBase {
 
     @Override
     public void execute() {
-        this.drivetrain.arcadeDrive(-SPEED, 0);
+        this.drivetrain.arcadeDrive(-speed, 0);
     }
 
     @Override
@@ -31,7 +33,7 @@ public class DriveToPitch extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return Math.abs(drivetrain.getPitch()) >= PITCH;
+        return drivetrain.getPitch() >= pitch;
     }
 
 }

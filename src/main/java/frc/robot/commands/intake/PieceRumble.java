@@ -32,8 +32,10 @@ public class PieceRumble extends CommandBase {
 
   @Override
   public void execute() {
-    this.operator.enableRumble();
-    this.driver.enableRumble();
+    if(intake.isCollectedCube()) {
+      operator.enableRumble();
+      driver.enableRumble();
+    }
   }
 
   @Override
