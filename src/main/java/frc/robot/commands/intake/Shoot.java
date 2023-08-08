@@ -4,12 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 
-public class ShootHigh extends CommandBase {
+public class Shoot extends CommandBase {
   private final Intake intake;
+  private double speed;
   
   
 
-  public ShootHigh(Intake intake) {
+  public Shoot(Intake intake, double speed) {
     this.intake = intake;
 
     addRequirements(this.intake);
@@ -22,7 +23,7 @@ public class ShootHigh extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.setLower(IntakeConstants.Speeds.speedShootHigh);
+    this.intake.setLower(speed);
   }
 
   @Override

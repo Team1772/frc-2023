@@ -35,6 +35,13 @@ public class Drivetrain extends SubsystemBase {
   private final SmartNavX navX;
   private final DifferentialDriveOdometry odometry;
 
+  public boolean kSpeedIsFast = true;
+  public double kSpeedFast = 1;
+  public double kSpeedSlow = 0.65;
+  public double kSpeed = 1;
+  
+  
+
 
   public Drivetrain() {
     this.motorLeftBack = new WPI_TalonSRX(DrivetrainConstants.Motors.motorLeftBack);
@@ -202,6 +209,12 @@ public class Drivetrain extends SubsystemBase {
 
   public double getPitchVelocity() {
     return pitchVelocity;
+  }
+
+  
+  private void alterSpeed() {
+    kSpeedIsFast = !kSpeedIsFast;
+    kSpeed = kSpeedIsFast ? kSpeedFast : kSpeedSlow;
   }
 
   @Override

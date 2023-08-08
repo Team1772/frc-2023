@@ -23,7 +23,7 @@ public class Auto4 extends SequentialCommandGroup {
         super.addCommands(
             new IntakeUpToSensor(intakeMove),
             new WaitCommand(2),
-            new ShootHighTimer(intake, poker),
+            // new ShootHighTimer(intake, poker),
             new WaitCommand(2),
             new ReverseTimer(drivetrain, 2.3),
             //new DriveToDistance(drivetrain, 5),

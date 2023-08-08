@@ -19,11 +19,11 @@ public class Release extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(IntakeConstants.Speeds.speedRelease);
+    this.intake.setDouble(IntakeConstants.Speeds.speedRelease);
   }
 
   @Override
   public void end(boolean isInterrupted) {
-    this.intake.stop();
+    this.intake.stopDouble();
   }
 }

@@ -21,12 +21,12 @@ public class ShootMid extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(IntakeConstants.Speeds.speedShootMid);
+    this.intake.setLower(IntakeConstants.Speeds.speedShootMid);
   }
 
   @Override
   public void end(boolean isInterrupted) {
-    this.intake.stop();
+    this.intake.stopLower();
   }
 
 }

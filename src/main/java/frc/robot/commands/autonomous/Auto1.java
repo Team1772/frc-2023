@@ -15,19 +15,20 @@ import frc.robot.commands.intake.ShootHighTimer;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeMove;
+import frc.robot.subsystems.IntakePoker;
 import frc.robot.subsystems.Poker;
 
 public class Auto1 extends SequentialCommandGroup {
 
-    public Auto1(Drivetrain drivetrain, Poker poker, Intake intake, IntakeMove intakeMove) {
+    public Auto1(Drivetrain drivetrain, Poker poker, Intake intake, IntakeMove intakeMove, IntakePoker intakePoker) {
     
         
         super.addCommands(
             new IntakeUpToSensor(intakeMove),
             new WaitCommand(0.7),
-            new ShootHighTimer(intake, poker),
+            new ShootHighTimer(intake, intakePoker),
             new WaitCommand(0.7),
-            new ReverseTimer(drivetrain, 0.8),
+            new ReverseTimer(drivetrain, 1.4),
             new Turn(drivetrain, 1.7),
             new IntakeDownToSensor(intakeMove)
             //new DriveToDistance(drivetrain, 0.04)

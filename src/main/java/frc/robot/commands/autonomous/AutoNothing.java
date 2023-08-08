@@ -21,7 +21,7 @@ public class AutoNothing extends SequentialCommandGroup {
         super.addCommands(
             new IntakeUpToSensor(intakeMove),
             new WaitCommand(1),
-            new ShootHighTimer(intake, poker),
+            // new ShootHighTimer(intake, poker),
             new WaitCommand(1),
             new Poke(poker, false)
         );

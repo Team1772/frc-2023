@@ -4,12 +4,12 @@ public final class IntakeConstants {
     
     public static final class Motors {
         public static final int
-            motorUpper = 7,
-            motorLower = 6;
+            motorUpper = 6,
+            motorLower = 7;
 
         public static final boolean 
-            isMotorUpperInverted = true,
-            isMotorLowerInverted = false;
+            isMotorUpperInverted = false,
+            isMotorLowerInverted = true;
     }
 
     public static final class Sensor {
@@ -20,9 +20,11 @@ public final class IntakeConstants {
     public static final class Speeds {
         public static final double
             speedCollect = -0.33,
-            speedRelease = 0.28,
-            speedShootMid = 0.37,
-            speedShootHigh = 0.45,
+            speedRelease = 0.22,
+            speedShootMid = 0.27,
+            speedShootHigh = 0.37,
+            
+
             speedShootSuperHigh = 1;
     }
 

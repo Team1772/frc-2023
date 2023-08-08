@@ -45,7 +45,7 @@ public class Balance extends CommandBase {
     
     @Override
     public boolean isFinished() {
-        return false;
+        return controle;
     }
     @Override
     public void end(boolean interrupted) {

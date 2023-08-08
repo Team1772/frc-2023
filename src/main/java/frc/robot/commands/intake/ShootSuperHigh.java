@@ -19,11 +19,11 @@ public class ShootSuperHigh extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(IntakeConstants.Speeds.speedShootSuperHigh);
+    this.intake.setLower(IntakeConstants.Speeds.speedShootSuperHigh);
   }
 
   @Override
   public void end(boolean isInterrupted) {
-    this.intake.stop();
+    this.intake.stopLower();
   }
 }

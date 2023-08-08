@@ -15,57 +15,33 @@ import frc.core.components.solenoids.SmartDoubleSolenoid;
 import frc.robot.commands.intake.PieceRumble;
 import frc.robot.constants.IntakeConstants;
 
-public class Intake extends SubsystemBase {
+public class IntakePoker extends SubsystemBase {
   
     private WPI_TalonSRX motorUpper;
-    private WPI_TalonSRX motorLower;
-    private DigitalInput cubeInfrared;
   
-    public Intake() {
+    public IntakePoker() {
       this.motorUpper = new WPI_TalonSRX(IntakeConstants.Motors.motorUpper);
       this.motorUpper.setInverted(IntakeConstants.Motors.isMotorUpperInverted);
-
-      this.motorLower = new WPI_TalonSRX(IntakeConstants.Motors.motorLower);
-      this.motorLower.setInverted(IntakeConstants.Motors.isMotorLowerInverted);
-
-      this.cubeInfrared = new DigitalInput(IntakeConstants.Sensor.cubeInfrared);
     }
-    
-    public boolean isCollectedCube(){
-      return !this.cubeInfrared.get();
-    } 
   
     public void setDouble(double speed) {
       this.motorUpper.set(ControlMode.PercentOutput, speed);
-      this.motorLower.set(ControlMode.PercentOutput, speed);
     }
 
     public void setUpper(double speed) {
       this.motorUpper.set(ControlMode.PercentOutput, speed);
     }
-
-    public void setLower(double speed) {
-      this.motorLower.set(ControlMode.PercentOutput, speed);
-    }
   
     public void stopDouble() {
       this.motorUpper.set(ControlMode.PercentOutput, 0);
-      this.motorLower.set(ControlMode.PercentOutput, 0);
     }
 
     public void stopUpper() {
       this.motorUpper.set(ControlMode.PercentOutput, 0);
-    }
-
-    public void stopLower() {
-      this.motorLower.set(ControlMode.PercentOutput, 0);
-    }
-
-    
+    }    
   
     @Override
     public void periodic() {
-        SmartDashboard.putBoolean("Collected Cube", isCollectedCube());
     }
   }
   

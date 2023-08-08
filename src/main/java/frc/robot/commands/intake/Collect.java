@@ -20,11 +20,11 @@ public class Collect extends CommandBase {
 
   @Override
   public void execute() {
-    this.intake.set(IntakeConstants.Speeds.speedCollect);
+    this.intake.setDouble(IntakeConstants.Speeds.speedCollect);
   }
 
   @Override
   public void end(boolean isInterrupted) {
-    this.intake.stop();
+    this.intake.stopDouble();
   }
 }
