@@ -1,7 +1,6 @@
 package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 
 public class Shoot extends CommandBase {
@@ -12,7 +11,8 @@ public class Shoot extends CommandBase {
 
   public Shoot(Intake intake, double speed) {
     this.intake = intake;
-
+    this.speed = speed;
+    
     addRequirements(this.intake);
   }
 

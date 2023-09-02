@@ -1,27 +1,17 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.core.util.TrajectoryBuilder;
-import frc.core.util.oi.BalanceRumble;
 import frc.core.util.oi.DriverController;
 import frc.core.util.oi.OperatorController;
-import frc.robot.commands.IntakeMove.IntakeUpDown;
-import frc.robot.commands.IntakePoker.PokeIntaker;
-import frc.robot.commands.Poker.Poke;
 import frc.robot.commands.autonomous.Auto1;
-import frc.robot.commands.autonomous.Auto2;
-import frc.robot.commands.autonomous.Auto3;
-import frc.robot.commands.autonomous.Auto4;
-import frc.robot.commands.autonomous.AutoNothing;
-import frc.robot.commands.autonomous.BalanceRoutine;
-import frc.robot.commands.autonomous.Test;
 import frc.robot.commands.drivetrain.ArcadeDrive;
 import frc.robot.commands.intake.Collect;
-import frc.robot.commands.intake.PieceRumble;
 import frc.robot.commands.intake.Release;
 import frc.robot.commands.intake.Shoot;
 import frc.robot.commands.intake.ShootMid;
 import frc.robot.commands.intake.ShootSuperHigh;
+import frc.robot.commands.intake_move.IntakeUpDown;
+import frc.robot.commands.intake_poker.PokeIntaker;
 import frc.robot.commands.intake.ShootHigh;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
@@ -34,8 +24,6 @@ public class RobotContainer {
   private final IntakeMove intakeMove;
   private final Intake intake;
   private final IntakePoker intakePoker;
-  private final Poker poker;
-
   public DriverController driver;
   private OperatorController operator;
 
@@ -44,7 +32,7 @@ public class RobotContainer {
     this.intake = new Intake();
     this.intakePoker = new IntakePoker();
     this.intakeMove = new IntakeMove();
-    this.poker = new Poker();
+    new Poker();
 
     this.driver = new DriverController();
     this.operator = new OperatorController();
@@ -103,14 +91,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-
-    Command auto1 = new Auto1(drivetrain, poker, intake, intakeMove, intakePoker);
-    Command auto2 = new Auto2(drivetrain, intake, intakeMove, poker, intakePoker);
-    Command auto3 = new Auto3(drivetrain, poker, intake, intakeMove, intakePoker);
-    Command auto4 = new Auto4(drivetrain, intake, intakeMove, poker);
-    Command autoNothing = new AutoNothing(drivetrain, intake, intakeMove, poker);
-    // Command auto = new Test(drivetrain, null);
-
-    return auto1;
+    return new Auto1(drivetrain, intake, intakeMove, intakePoker);
   }
 }

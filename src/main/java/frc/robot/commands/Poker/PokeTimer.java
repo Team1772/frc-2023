@@ -1,4 +1,4 @@
-package frc.robot.commands.Poker;
+package frc.robot.commands.poker;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -6,14 +6,10 @@ import frc.robot.subsystems.Poker;
 
 public class PokeTimer extends CommandBase {
     private Poker poker;
-    private boolean control;
-    
     private Timer timer;
 
-    public PokeTimer(Poker poker, boolean control) {
+    public PokeTimer(Poker poker) {
       this.poker = poker;
-      this.control = control;
-  
       addRequirements(this.poker);
     }
   

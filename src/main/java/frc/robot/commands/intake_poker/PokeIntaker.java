@@ -1,8 +1,6 @@
-package frc.robot.commands.IntakePoker;
+package frc.robot.commands.intake_poker;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.constants.IntakeConstants;
-import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakePoker;
 
 public class PokeIntaker extends CommandBase {

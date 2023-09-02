@@ -1,9 +1,6 @@
 package frc.robot.commands.drivetrain;
 
 import frc.robot.subsystems.Drivetrain;
-
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 

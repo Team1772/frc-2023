@@ -2,11 +2,9 @@ package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.Poker.Poke;
 import frc.robot.constants.IntakeConstants;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakePoker;
-import frc.robot.subsystems.Poker;
 
 public class ShootHighTimer extends CommandBase {
   private final Intake intake;

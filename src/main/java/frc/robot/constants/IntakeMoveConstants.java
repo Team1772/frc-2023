@@ -1,6 +1,6 @@
 package frc.robot.constants;
 
-public class IntakeMoveConstants {
+public final class IntakeMoveConstants {
     public static final class Motor {
         public static final int
             motorMove = 5;

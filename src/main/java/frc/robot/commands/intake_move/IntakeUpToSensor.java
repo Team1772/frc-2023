@@ -1,19 +1,15 @@
-package frc.robot.commands.IntakeMove;
-
-import java.util.function.DoubleSupplier;
+package frc.robot.commands.intake_move;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.constants.IntakeMoveConstants;
-import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeMove;
 
-public class IntakeDownToSensor extends CommandBase {
+public class IntakeUpToSensor extends CommandBase {
   private IntakeMove intakeMove;
   private double speed;
   
-  public IntakeDownToSensor(IntakeMove intakeMove) {
+  public IntakeUpToSensor(IntakeMove intakeMove) {
     this.intakeMove = intakeMove;
-    this.speed = -1;
+    this.speed = 0.22;
 
     addRequirements(this.intakeMove);
   }
@@ -28,7 +24,7 @@ public class IntakeDownToSensor extends CommandBase {
   
   @Override
   public boolean isFinished() {
-    return this.intakeMove.isLimitMin();
+    return this.intakeMove.isLimitMax();
   }
 
   @Override
