@@ -4,13 +4,13 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class ReverseTimer extends CommandBase {
+public class Turn extends CommandBase {
   private Drivetrain drivetrain;
   private Timer timer;
 
   private double seconds;
 
-  public ReverseTimer(Drivetrain drivetrain, double seconds) {
+  public Turn(Drivetrain drivetrain, double seconds) {
     this.drivetrain = drivetrain;
 
     this.timer = new Timer();
@@ -22,11 +22,11 @@ public class ReverseTimer extends CommandBase {
   @Override
   public void initialize() {
     this.timer.start();
-  }
+}
 
   @Override
   public void execute() {
-    this.drivetrain.arcadeDrive(-0.66, 0);
+    this.drivetrain.arcadeDrive(-0.3, -0.67);
   }
 
   @Override

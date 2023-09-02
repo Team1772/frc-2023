@@ -4,14 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivetrain;
 
 public class DriveToDistance extends CommandBase {
-    private double distance;
+    private double distance = 0.65;
+    private static final double SPEED = 0.7;
     private Drivetrain drivetrain;
-    private double speed;
 
-    public DriveToDistance(Drivetrain drivetrain, double distance, double speed) {
-        this.distance = distance;
+    public DriveToDistance(Drivetrain drivetrain, double distance) {
         this.drivetrain = drivetrain;
-        this.speed = speed;
+        this.distance = distance;
 
         addRequirements(drivetrain);
     }
@@ -23,7 +22,7 @@ public class DriveToDistance extends CommandBase {
 
     @Override
     public void execute() {
-        this.drivetrain.arcadeDrive(speed, 0);
+        this.drivetrain.arcadeDrive(-SPEED, 0);
     }
 
     @Override
