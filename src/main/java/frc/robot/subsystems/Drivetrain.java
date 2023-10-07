@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import org.opencv.features2d.FlannBasedMatcher;
+
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -19,7 +21,7 @@ import frc.robot.constants.DrivetrainConstants;
 
 public class Drivetrain extends SubsystemBase {
 
-  private static final boolean IS_DEBUGGING = false;
+  private static final boolean IS_DEBUGGING = true;
   private double lastPitch;
   private double pitchVelocity;
 
